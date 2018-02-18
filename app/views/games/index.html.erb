@@ -1,0 +1,55 @@
+<%#= distance_of_time_in_words(Time.now, params[:date]) %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+  <h3>
+    San Francisco Giants games<br/>
+    <small class="text-muted">Season <%= select_tag 'season', options_for_select(['2017', '2016', '2015'], @season) %></small>
+  </h3>
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <table class="table table-hover table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Game</th>
+          <th>Post-Game Wrap</th>
+          <th>Post-Game Highlights</th>
+          <th>MLB.com</th>
+          <th>baseball.theater</th>
+          <th>YouTube</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @games.each do |game| %>
+          <tr>
+            <td><%= game.game_number %></td>
+            <td><%= game.date.strftime("%b %e") %></td>
+            <td><%= game_score game %></td>
+            <td><% if game.wrap_url.present? %><%= link_to truncate(game.wrap_text, length: 40), game.wrap_url %><% end %></td>
+            <td><% if game.recap_url.present? %><%= link_to truncate(game.recap_text, length: 40), game.recap_url %><% end %></td>
+            <td><%= link_to_mlbcom game %></td>
+            <td><%= link_to_baseball_theater game %></td>
+            <td><%= link_to_youtube game %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+</div>
+
+<%= javascript_tag do %>
+$(document).ready(function(){
+  $('#season').on('change', function(){
+    location.href = '/?season=' + $(this).val();
+  });
+});
+<% end %>
+

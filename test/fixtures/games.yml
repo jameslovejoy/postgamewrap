@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-12-07
+  game_number: 1
+  home: MyString
+  away: MyString
+  mlb_id: MyString
+  bbref_id: MyString
+  wrap_id: 1
+  recap_id: 1
+
+two:
+  date: 2017-12-07
+  game_number: 1
+  home: MyString
+  away: MyString
+  mlb_id: MyString
+  bbref_id: MyString
+  wrap_id: 1
+  recap_id: 1
